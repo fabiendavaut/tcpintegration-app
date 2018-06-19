@@ -22,11 +22,12 @@ public class BusConfigService {
 
     public List<BusConfig> getActivatedList() {
 
-        logger.info("retrieving configurations from properties file...");
+        logger.info("retrieving configurations ...");
 
         List<BusConfig> busConfigList = new ArrayList<>();
 
         BusConfig busConfig = new BusConfig();
+        busConfig.setId(1L);
         busConfig.setHostname("localhost");
         busConfig.setPort(8080);
         busConfig.setModule("MyModule");

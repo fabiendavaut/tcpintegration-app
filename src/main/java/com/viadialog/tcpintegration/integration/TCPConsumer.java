@@ -7,6 +7,7 @@ import org.springframework.integration.dsl.IntegrationFlows;
 import org.springframework.integration.dsl.context.IntegrationFlowContext;
 import org.springframework.integration.dsl.context.IntegrationFlowRegistration;
 import org.springframework.integration.ip.tcp.TcpReceivingChannelAdapter;
+import org.springframework.integration.ip.tcp.connection.TcpNioClientConnectionFactory;
 import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
@@ -61,7 +62,16 @@ public class TCPConsumer {
 
     public TcpReceivingChannelAdapter tcpReceivingChannelAdapter(BusConfig busConfig) {
 
+        TcpNioClientConnectionFactory tcpNioClientConnectionFactory = new TcpNioClientConnectionFactory(busConfig.getHostname(), busConfig.getPort());
+
+ //       tcpNioClientConnectionFactory.setApplicationEventPublisher();
+
         TcpReceivingChannelAdapter tcpReceivingChannelAdapter = new TcpReceivingChannelAdapter();
+
+        tcpReceivingChannelAdapter.setConnectionFactory(tcpNioClientConnectionFactory);
+
+        tcpReceivingChannelAdapter.setAutoStartup(true);
+        tcpReceivingChannelAdapter.setClientMode(true);
 
         return tcpReceivingChannelAdapter;
     }
