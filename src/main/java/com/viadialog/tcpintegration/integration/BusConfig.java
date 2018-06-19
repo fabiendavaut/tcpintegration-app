@@ -12,6 +12,10 @@ public class BusConfig {
 
     private Integer port;
 
+    private String family;
+
+    private String module;
+
 
     public Long getId() {
         return id;
@@ -35,6 +39,22 @@ public class BusConfig {
 
     public void setPort(Integer port) {
         this.port = port;
+    }
+
+    public String getFamily() {
+        return family;
+    }
+
+    public void setFamily(String family) {
+        this.family = family;
+    }
+
+    public String getModule() {
+        return module;
+    }
+
+    public void setModule(String module) {
+        this.module = module;
     }
 
     @Override

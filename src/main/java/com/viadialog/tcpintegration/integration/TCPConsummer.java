@@ -12,16 +12,23 @@ import org.springframework.stereotype.Service;
 
 import java.util.LinkedHashMap;
 
+/**
+ *
+ */
+
 @Service
 public class TCPConsummer {
 
     private static final Logger logger = LoggerFactory.getLogger(TCPConsummer.class);
 
-    @Autowired
     private IntegrationFlowContext flowContext;
 
-    @Autowired
     private MyMessageHandler myMessageHandler;
+
+    public TCPConsummer(IntegrationFlowContext flowContext, MyMessageHandler myMessageHandler) {
+        this.flowContext = flowContext;
+        this.myMessageHandler = myMessageHandler;
+    }
 
     private final LinkedHashMap<String, IntegrationFlowRegistration> integrationFlowRegistrations = new LinkedHashMap<String, IntegrationFlowRegistration>() {
 
@@ -34,14 +41,14 @@ public class TCPConsummer {
 
     public synchronized void create(BusConfig busConfig) {
 
-        logger.info("create consummer for busConfig" + busConfig);
+        logger.info("create consumer for busConfig" + busConfig);
 
         IntegrationFlowRegistration integrationFlowRegistration = integrationFlowRegistrations
             .get(String.valueOf(busConfig.getId()));
 
         if (integrationFlowRegistration == null) {
 
-            logger.debug("Create new TCP connector flow [id=" + busConfig.getId() + "]");
+            logger.debug("Create new TCP connector flow [id=" + busConfig + "]");
 
             IntegrationFlow flow = IntegrationFlows.from(tcpReceivingChannelAdapter(busConfig))
                 .handle(this.myMessageHandler)

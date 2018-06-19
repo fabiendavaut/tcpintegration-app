@@ -33,7 +33,7 @@ public class DynamicRoutesStarterService implements ApplicationRunner {
         List<BusConfig> busConfigs = busConfigService.getActivatedList();
 
         busConfigs.forEach(e -> {
-            tcpConsummer.create((BusConfig) e);
+            tcpConsummer.create(e);
         });
     }
 
