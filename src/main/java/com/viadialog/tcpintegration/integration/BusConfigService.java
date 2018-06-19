@@ -29,9 +29,10 @@ public class BusConfigService {
         BusConfig busConfig = new BusConfig();
         busConfig.setHostname("localhost");
         busConfig.setPort(8080);
+        busConfig.setModule("MyModule");
+        busConfig.setFamily("jhkjh");
 
-
-        busConfigList.add(new BusConfig());
+        busConfigList.add(busConfig);
 
         return busConfigList;
     }

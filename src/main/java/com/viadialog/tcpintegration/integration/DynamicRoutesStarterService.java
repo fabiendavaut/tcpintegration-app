@@ -15,11 +15,11 @@ public class DynamicRoutesStarterService implements ApplicationRunner {
 
     private BusConfigService busConfigService;
 
-    private TCPConsummer tcpConsummer;
+    private TCPConsumer tcpConsumer;
 
-    public DynamicRoutesStarterService(BusConfigService busConfigService, TCPConsummer tcpConsummer) {
+    public DynamicRoutesStarterService(BusConfigService busConfigService, TCPConsumer tcpConsumer) {
         this.busConfigService = busConfigService;
-        this.tcpConsummer = tcpConsummer;
+        this.tcpConsumer = tcpConsumer;
     }
 
     @Override
@@ -33,7 +33,7 @@ public class DynamicRoutesStarterService implements ApplicationRunner {
         List<BusConfig> busConfigs = busConfigService.getActivatedList();
 
         busConfigs.forEach(e -> {
-            tcpConsummer.create(e);
+            tcpConsumer.create(e);
         });
     }
 

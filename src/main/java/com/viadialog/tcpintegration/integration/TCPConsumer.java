@@ -2,7 +2,6 @@ package com.viadialog.tcpintegration.integration;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.integration.dsl.IntegrationFlows;
 import org.springframework.integration.dsl.context.IntegrationFlowContext;
@@ -17,15 +16,15 @@ import java.util.LinkedHashMap;
  */
 
 @Service
-public class TCPConsummer {
+public class TCPConsumer {
 
-    private static final Logger logger = LoggerFactory.getLogger(TCPConsummer.class);
+    private static final Logger logger = LoggerFactory.getLogger(TCPConsumer.class);
 
     private IntegrationFlowContext flowContext;
 
     private MyMessageHandler myMessageHandler;
 
-    public TCPConsummer(IntegrationFlowContext flowContext, MyMessageHandler myMessageHandler) {
+    public TCPConsumer(IntegrationFlowContext flowContext, MyMessageHandler myMessageHandler) {
         this.flowContext = flowContext;
         this.myMessageHandler = myMessageHandler;
     }
@@ -36,7 +35,6 @@ public class TCPConsummer {
          *
          */
         private static final long serialVersionUID = 1L;
-
     };
 
     public synchronized void create(BusConfig busConfig) {
@@ -64,7 +62,6 @@ public class TCPConsummer {
     public TcpReceivingChannelAdapter tcpReceivingChannelAdapter(BusConfig busConfig) {
 
         TcpReceivingChannelAdapter tcpReceivingChannelAdapter = new TcpReceivingChannelAdapter();
-
 
         return tcpReceivingChannelAdapter;
     }
